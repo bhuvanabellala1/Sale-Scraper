@@ -10,9 +10,10 @@ def findSales(url=None):
             jcrewResponse = requests.get(url)
             html = jcrewResponse.text
             soup = BeautifulSoup(html, "html.parser")
-            for child in soup.find('div', {'id': 'globalHeaderPromoContainer'}).descendants:
-                print child
-
+            promoDetails = soup.find('div', {'id': 'globalHeaderPromoContainer'})
+            promoText = promoDetails.find('span', {'class': 'global-header-text'}).text
+            details = promoDetails.find('div', {'id': 'globalHeaderDisclaimertext'}).text
+            return promoText,details
         except:
             print "Error getting sale info!"
 

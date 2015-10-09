@@ -4,8 +4,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    findSales("https://www.jcrew.com/index.jsp")
-    return 'Hello World!'
+    promoText, details = findSales("https://www.jcrew.com/index.jsp")
+    return promoText
 
 if __name__ == '__main__':
     app.run()
