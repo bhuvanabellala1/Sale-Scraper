@@ -3,26 +3,32 @@ import re
 import requests
 
 
-def findSales(url=None):
+def jcrew(htmlText):
 
-    if url != None:
-        try:
-            print "HERE"
-            jcrewResponse = requests.get(url)
-            print jcrewResponse
-            html = jcrewResponse.text
-            print "Here"
-            soup = BeautifulSoup(html, "html.parser")
-            promoDetails = soup.find('div', {'id': 'globalHeaderPromoContainer'})
-            promoText = promoDetails.find('span', {'class': 'global-header-text'}).text
-            details = promoDetails.find('div', {'id': 'globalHeaderDisclaimertext'}).text
-            return promoText,details
-        except:
-            return "Error getting sale info!", None
+    html = htmlText.text
+    soup = BeautifulSoup(html, "html.parser")
+    promoDetails = soup.find('div', {'id': 'globalHeaderPromoContainer'})
+    promoText = promoDetails.find('span', {'class': 'global-header-text'}).text
+    details = promoDetails.find('div', {'id': 'globalHeaderDisclaimertext'}).text
+    return promoText,details
 
+
+
+def findSales(company, url):
+
+    htmlText = ""
+
+    try:
+        htmlText = requests.get(url)
+    except:
+        return "Error getting sale info!", None
+
+    if company == "jcrew":
+        return jcrew(htmlText)
     else:
         return None, None
 
 
 if __name__ == '__main__':
-    findSales("https://www.jrew.com/index.jsp")
+    promoText,details = findSales("jcrew", "https://www.jrew.com/index.jsp")
+    print promoText
