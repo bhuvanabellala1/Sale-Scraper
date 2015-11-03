@@ -1,18 +1,22 @@
-from flask import Flask, render_template
+
+import json
+import flask
+from flask import Flask, jsonify, Response, request
 from jcrew import findSales
+
 app = Flask(__name__)
 
 #Error checking has not been implemented yet
 @app.route('/')
 def home_page():
 
-    #Error checking is not done
-    promoText, details = findSales("jcrew", "https://www.jcrew.com/index.jsp")
+    return flask.render_template('index.html')
 
-    if promoText:
-        return render_template("index.html", promoText = promoText)
-    else:
-        return "Failed"
+@app.route('/deals', methods=['GET', 'POST'])
+def get_deals():
+
+    promoText, details = findSales("jcrew", "https://www.jcrew.com/index.jsp")
+    return jsonify(jcrew=promoText, myRes="hedslo",)
 
 if __name__ == '__main__':
     app.run()
