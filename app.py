@@ -15,7 +15,9 @@ def home_page():
 @app.route('/deals', methods=['GET', 'POST'])
 def get_deals():
 
+    print "fsfsd"
     promoText, details = findSales("jcrew", "https://www.jcrew.com/index.jsp")
+    print promoText
     return jsonify(jcrew=promoText, myRes="hedslo",)
 
 if __name__ == '__main__':

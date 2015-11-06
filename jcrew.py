@@ -16,19 +16,19 @@ def jcrew(htmlText):
 
 def findSales(company, url):
 
-    htmlText = ""
+    response = ""
 
     try:
-        htmlText = requests.get(url)
-    except:
-        return "Error getting sale info!", None
+        response = requests.get(url, timeout=(10.0, 1.0))
+    except requests.exceptions.ConnectTimeout as e:
+        print "Request to " + company + "timed out. Please check url"
+
 
     if company == "jcrew":
-        return jcrew(htmlText)
+        return jcrew(response)
     else:
         return None, None
 
 
 if __name__ == '__main__':
-    promoText,details = findSales("jcrew", "https://www.jrew.com/index.jsp")
-    print promoText
+    findSales("jcrew", "https://www.jrew.com/index.jsp")
