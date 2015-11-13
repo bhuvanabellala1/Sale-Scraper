@@ -1,4 +1,37 @@
-var CommentBox = React.createClass({
+
+var HoverButton = React.createClass({
+        getInitialState: function () {
+          return {
+            hover: false};
+        },
+
+        mouseOver: function () {
+          this.setState({hover: true});
+        },
+
+        mouseOut: function () {
+          this.setState({hover: false});
+        },
+
+        render: function() {
+          var label = "J. Crew";
+          if (this.state.hover) {
+            label = this.props.deals.jcrew;
+              console.log(label);
+          }
+          return React.createElement(
+            "box",
+            {
+
+            onMouseOver: this.mouseOver, onMouseOut: this.mouseOut},
+            label
+
+          );
+        }
+      });
+
+/* Loads the deals */
+var GetDeals = React.createClass({
 
         loadDeals: function() {
             $.ajax({
@@ -22,9 +55,12 @@ var CommentBox = React.createClass({
         },
         render: function() {
             return (
-                    <h2>{this.state.deals.jcrew}</h2>
+                <div className="loadDeals">
+                    <h2>Sale Scrapper</h2>
+                    <HoverButton deals={this.state.deals}/>
+                </div>
             );
         }
     });
 
-ReactDOM.render(<CommentBox url="/deals" />, document.getElementById('jCrewContent'));
+ReactDOM.render(<GetDeals url="/deals" />, document.getElementById('jCrewContent'));

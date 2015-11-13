@@ -3,26 +3,34 @@ import re
 import requests
 
 
-def findSales(url=None):
+def jcrew(htmlText):
 
-    if url != None:
-        try:
-            print "HERE"
-            jcrewResponse = requests.get(url)
-            print jcrewResponse
-            html = jcrewResponse.text
-            print "Here"
-            soup = BeautifulSoup(html, "html.parser")
-            promoDetails = soup.find('div', {'id': 'globalHeaderPromoContainer'})
-            promoText = promoDetails.find('span', {'class': 'global-header-text'}).text
-            details = promoDetails.find('div', {'id': 'globalHeaderDisclaimertext'}).text
-            return promoText,details
-        except:
-            return "Error getting sale info!", None
+    html = htmlText.text
+    soup = BeautifulSoup(html, "html.parser")
+    promoDetails = soup.find('div', {'id': 'globalHeaderPromoContainer'})
+    promoText = promoDetails.find('span', {'class': 'global-header-text'}).text
+    details = promoDetails.find('div', {'id': 'globalHeaderDisclaimertext'}).text
+    return promoText,details
 
-    else:
-        return None, None
+def nyc(htmlText):
+    return None, None
+
+
+def findSales(company, url):
+
+    response = ""
+
+    try:
+        response = requests.get(url, timeout=(10.0, 1.0))
+    except requests.exceptions.ConnectTimeout as e:
+        print "Request to " + company + "timed out. Please check url"
+
+
+    if company == "jcrew":
+        return jcrew(response)
+    if company == "nyc":
+        return nyc(response)
 
 
 if __name__ == '__main__':
-    findSales("https://www.jrew.com/index.jsp")
+    findSales("jcrew", "https://www.jcrew.com/index.jsp")
