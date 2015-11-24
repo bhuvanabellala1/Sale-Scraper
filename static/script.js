@@ -56,7 +56,7 @@ var GetDeals = React.createClass({
         render: function() {
             return (
                 <div className="loadDeals">
-                    <h2>Sale Scrapper</h2>
+                    <h2>The Sale Shop</h2>
                     <HoverButton deals={this.state.deals}/>
                 </div>
             );
