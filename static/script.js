@@ -14,19 +14,19 @@ var HoverButton = React.createClass({
         },
 
         render: function() {
-          var label = "J. Crew";
-          if (this.state.hover) {
-            label = this.props.deals.jcrew;
-              console.log(label);
-          }
-          return React.createElement(
-            "box",
-            {
+            var label = <img src={'/static/jcrew.png'} alt="J Crew Bag"/>;
+             if (this.state.hover) { 
+                label = this.props.deals.jcrew;
+                 console.log(label);
+             } 
+            return React.createElement( 
+                "box", 
+                {  
 
-            onMouseOver: this.mouseOver, onMouseOut: this.mouseOut},
-            label
+                onMouseOver: this.mouseOver, onMouseOut: this.mouseOut},
+                label  
+            );
 
-          );
         }
       });
 
