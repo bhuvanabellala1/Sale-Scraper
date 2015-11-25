@@ -9,7 +9,8 @@ def jcrew(htmlText):
     soup = BeautifulSoup(html, "html.parser")
     promoDetails = soup.find('div', {'id': 'globalHeaderPromoContainer'})
     promoText = promoDetails.find('span', {'class': 'global-header-text'}).text
-    details = promoDetails.find('div', {'id': 'globalHeaderDisclaimertext'}).text
+    #details = promoDetails.find('div', {'id': 'globalHeaderDisclaimertext'}).text
+    details = None
     return promoText,details
 
 
@@ -31,4 +32,4 @@ def findSales(company, url):
 
 
 if __name__ == '__main__':
-    findSales("jcrew", "https://www.jrew.com/index.jsp")
+    findSales("jcrew", "https://www.jcrew.com/index.jsp")

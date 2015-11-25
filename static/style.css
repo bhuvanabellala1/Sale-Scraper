@@ -1,9 +1,19 @@
 div.loadDeals {
-    padding: 10px 0 30px 0;
-    background-color: #eeeeee;
+    padding: 10px 0 10px 0;
+    background-color: papayawhip;
     border-radius: 6px;
-    font-size: 3em;
-    margin-top: 40px;
+    font-size: 2em;
+    margin-top: 30px;
     text-align: center;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
+    border-style: dashed;
+}
+
+
+p.dealsParagraph {
+    float: left;
+    width: 250px;
+    border:3px solid brown;
+    position: absolute;
+    background-color: papayawhip;
 }
