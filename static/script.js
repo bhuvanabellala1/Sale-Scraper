@@ -14,7 +14,7 @@ var HoverButton = React.createClass({
         },
 
         render: function() {
-            var label = <img className="JcrewBag" src={'/static/jcrewbag.jpg'} alt="J Crew Bag"
+            var label = <img className="JcrewBag" src={'/static/jcrew.jpg'} alt="J Crew Bag"
                              width="150" height="120"/>;
              if (this.state.hover) { 
                 label = this.props.deals.jcrew;
