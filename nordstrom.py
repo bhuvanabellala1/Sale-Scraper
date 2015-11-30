@@ -30,5 +30,5 @@ def findSales(company, url):
 
 
 if __name__ == '__main__':
-    promoText,details = findSales("nordstrom", "https://www.nordstrom.com")
+    promoText,details = findSales("nordstrom", "http://shop.nordstrom.com/")
     print promoText
