@@ -1,7 +1,10 @@
-
+/*
+    Renders all the deals
+ */
 var DisplayDeals = React.createClass({
     render: function () {
 
+        /* Uses map to go through each deal and render*/
           var display_deals = this.props.deals.map(function (deal, i) {
               return (
                   <Deal company = {deal.company} id = {i} image = {deal.image}
@@ -17,11 +20,13 @@ var DisplayDeals = React.createClass({
         }
       });
 
+/*Componenet controls how each deal is presented */
 var Deal =  React.createClass({
 
         getInitialState: function () {
           return {
-            hover: false};
+              hover: false,
+          };
         },
 
         mouseOver: function () {
@@ -32,6 +37,10 @@ var Deal =  React.createClass({
           this.setState({hover: false});
         },
 
+        displayDetails: function(){
+           alert(this.props.details);
+        },
+
         render: function() {
             var label = <img src={this.props.image} alt="J Crew Bag" width="150" height="120"/>;
              if (this.state.hover) { 
@@ -39,7 +48,7 @@ var Deal =  React.createClass({
                  console.log(label);
              } 
           return (
-               <div id='dealDisplay' onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>{label}</div>
+               <div id='dealDisplay' onMouseOver={this.mouseOver} onMouseOut={this.mouseOut} onClick={this.displayDetails}>{label}</div>
           );
         }
       });
@@ -47,6 +56,7 @@ var Deal =  React.createClass({
 /* Loads the deals */
 var GetDeals = React.createClass({
 
+        /* Make an ajax request to retrieve the deals */
         loadDeals: function() {
             console.log("here");
             $.ajax({

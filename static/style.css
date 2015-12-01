@@ -17,10 +17,10 @@ h1 {
 
 
 div#dealDisplay {
-    padding: 40px;
+    padding: 50px;
     float: left;
     width: 150px;
-    height: 120px;
+    height: 150px;
     font-size: large;
     color: black;
 }
