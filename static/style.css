@@ -1,7 +1,7 @@
 div.loadDeals {
     font-size: medium;
     color: #cd9b9b;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
     font-family: 'PT Sans', sans-serif;
     margin: auto;
     width: 60%;
@@ -11,7 +11,7 @@ div.loadDeals {
 h1 {
     text-align: left;
     letter-spacing: -1px;
-    border-radius: 10px;
+    border-radius: 1px;
     border-bottom: groove;
 }
 
